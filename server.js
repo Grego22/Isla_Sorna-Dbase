@@ -23,27 +23,27 @@ let fourDinos = [
     name: 'Triceratops',
     colors: ['blue', 'white'],
     diet: 'Herbivore',
-    weight: 11000
+    weight: '11000'
   },{
     id:2,
     name: 'Velociraptor',
     colors: ['gold', 'green', 'white'],
     diet: 'Carnivore',
-    weight: 30
+    weight: '30'
   },
   {
     id:3,
     name: 'T-Rex',
     colors: ['orange', 'white'],
     diet: 'Carnivore',
-    weight: 20000
+    weight: '20000'
   },
   {
   id:4,
    name: 'Pachycephalosaurus',
    colors: ['gold', 'silver', 'red'],
    diet: 'herbivore',
-   weight: 1000
+   weight: '1000'
  }
 ]
 
@@ -67,6 +67,26 @@ app.get('/api/dinos/:id/weight', (req, res) => {
   res.json(myDino.weight)
 })
 
+app.post('/api/dinos', (req, res)=>{
+  let newDino ={
+    id:fourDinos.length +1,
+    name: req.body.name,
+    color: req.body.color,
+    weight: req.body.weight,
+  }
+  fourDinos.push(newDino)
+  res.json(newDino)
+})
+
+//delete a dino!
+app.delete('/api/dinos/:id', (req, res) => {
+    // get the id from the request
+    const dinoId = parseInt(req.params.id)
+    // delete the robot from the "database"
+    allDino = allDinos.filter(bot => bot.id !== dinoId)
+    // return something??
+    res.json(allDinos)
+})
 
 
 app.listen(8888, () => {
