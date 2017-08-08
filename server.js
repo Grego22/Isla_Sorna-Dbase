@@ -11,13 +11,13 @@ app.set('view engine', 'mustache')
 app.use(express.static('public'))
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extend:false}))
+app.use(bodyParser.urlencoded({extended:false}))
 
 app.get('/', (req, res) => {
-  res.render('index',myDinos[1]);
+  res.render('index',fourDinos[1]);
 })
 
-let myDinos = [
+let fourDinos = [
   {
     id:1,
     name: 'Triceratops',
@@ -39,14 +39,34 @@ let myDinos = [
     weight: 20000
   },
   {
-    id:4,
+  id:4,
    name: 'Pachycephalosaurus',
    colors: ['gold', 'silver', 'red'],
    diet: 'herbivore',
    weight: 1000
  }
 ]
-console.log(myDinos)
+
+app.get('/api/dinos/:id', (req, res) => {
+  const dinosId = parseInt(req.params.id)
+  // go my "database"
+  const myDino  = fourDinos.find(bot => {
+    return bot.id === dinosId
+  })
+  // this is how we retrun JSON from an endpoint
+  res.json(myDino);
+})
+
+app.get('/api/dinos/:id/weight', (req, res) => {
+  const dinosId = parseInt(req.params.id)
+  // go my "database"
+  const myDino  = fourDinos.find(bot => {
+    return bot.id === dinosId
+  })
+  // this is how we retrun JSON from an endpoint
+  res.json(myDino.weight)
+})
+
 
 
 app.listen(8888, () => {
