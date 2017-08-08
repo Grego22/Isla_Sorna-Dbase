@@ -66,7 +66,7 @@ app.get('/api/dinos/:id/weight', (req, res) => {
   // this is how we retrun JSON from an endpoint
   res.json(myDino.weight)
 })
-
+//post a new Dinosaurs
 app.post('/api/dinos', (req, res)=>{
   let newDino ={
     id:fourDinos.length +1,
@@ -80,12 +80,9 @@ app.post('/api/dinos', (req, res)=>{
 
 //delete a dino!
 app.delete('/api/dinos/:id', (req, res) => {
-    // get the id from the request
     const dinoId = parseInt(req.params.id)
-    // delete the robot from the "database"
-    allDino = allDinos.filter(bot => bot.id !== dinoId)
-    // return something??
-    res.json(allDinos)
+    fourDinos = fourDinos.filter(bot => bot.id !== dinoId)
+    res.json(fourDinos)
 })
 
 
