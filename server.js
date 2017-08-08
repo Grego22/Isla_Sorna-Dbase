@@ -27,14 +27,14 @@ let myDinos = [
   },{
     id:2,
     name: 'Velociraptor',
-    colors: ['gold', 'green', 'white']
-    diet: 'Carnivore'
+    colors: ['gold', 'green', 'white'],
+    diet: 'Carnivore',
     weight: 30
   },
   {
     id:3,
     name: 'T-Rex',
-    colors: ['orange', 'white']
+    colors: ['orange', 'white'],
     diet: 'Carnivore',
     weight: 20000
   },
